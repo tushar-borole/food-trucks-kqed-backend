@@ -2,17 +2,17 @@
 #Python 2.7
 
 from flask_restful import Resource, Api, request
-from package.model import conn
+from modules.model import conn
 
 
 
 class Dashboard(Resource):
     """It contains all apis doing activity with the single patient entity"""
 
-    def get(self,id):
+    def get(self):
         """api to retrive details of the patient by it id"""
 
-        patient = conn.execute("SELECT * FROM patient WHERE pat_id=?",(id,)).fetchall()
+        patient = conn.execute("SELECT * FROM foodtruck").fetchall()
         return patient
 
     def delete(self,id):

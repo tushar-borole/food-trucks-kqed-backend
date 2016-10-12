@@ -21,27 +21,3 @@ def dict_factory(cursor, row):
 
 conn.row_factory = dict_factory
 
-conn.execute('''CREATE TABLE if not exists patient
-(pat_id INTEGER PRIMARY KEY AUTOINCREMENT,
-pat_first_name TEXT NOT NULL,
-pat_last_name TEXT NOT NULL,
-pat_insurance_no TEXT NOT NULL,
-pat_ph_no TEXT NOT NULL,
-pat_date DATE DEFAULT (datetime('now','localtime')),
-pat_address TEXT NOT NULL);''')
-
-conn.execute('''CREATE TABLE if not exists doctor
-(doc_id INTEGER PRIMARY KEY AUTOINCREMENT,
-doc_first_name TEXT NOT NULL,
-doc_last_name TEXT NOT NULL,
-doc_ph_no TEXT NOT NULL,
-doc_date DATE DEFAULT (datetime('now','localtime')),
-doc_address TEXT NOT NULL);''')
-
-conn.execute('''CREATE TABLE if not exists appointment
-(app_id INTEGER PRIMARY KEY AUTOINCREMENT,
-pat_id INTEGER NOT NULL,
-doc_id INTEGER NOT NULL,
-appointment_date DATE NOT NULL,
-FOREIGN KEY(pat_id) REFERENCES patient(pat_id),
-FOREIGN KEY(doc_id) REFERENCES doctor(doc_id));''')

@@ -14,7 +14,7 @@ with open('config.json') as data_file:
 app = Flask(__name__, static_url_path='')
 api = Api(app)
 
-api.add_resource(Dashboard, '/patient')
+api.add_resource(Dashboard, '/dashboard')
 
 
 # Routes
